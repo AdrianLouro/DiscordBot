@@ -22,7 +22,7 @@ export default class Main {
 		const commands: Command[] = [];
 
 		for (const commandFolder of commandFolders) {
-			const commandFiles = fs.readdirSync(`${__dirname}/commands/${commandFolder}`);
+			const commandFiles: string[] = fs.readdirSync(`${__dirname}/commands/${commandFolder}`);
 			const folderCommands: Command[] = await this.getFolderCommands(commandFiles, commandFolder);
 			commands.push(...folderCommands);
 		}

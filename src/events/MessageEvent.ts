@@ -4,16 +4,16 @@ import {
     Message as DiscordMessage
 } from 'discord.js';
 
-export default class MessageDispatcher {
-    private readonly commands: DiscordCollection<string, Command>;
+export default class MessageEvent {
+    private readonly commands = new DiscordCollection<string, Command>();
     private readonly commandPrefix: string;
 
-    constructor(commandPrefix: string, commands: DiscordCollection<string, Command>) {
-        this.commands = commands;
+    constructor(commandPrefix: string, commands: Command[]) {
         this.commandPrefix = commandPrefix;
+        this.setCommands(commands);
     }
 
-    public dispatch(message: DiscordMessage): void {
+    public handle(message: DiscordMessage): void {
         if (!message.content.startsWith(this.commandPrefix) || message.author.bot) {
             return;
         }
@@ -33,5 +33,11 @@ export default class MessageDispatcher {
             console.error(error);
             message.reply('there was an error trying to execute that command!');
         }
+    }
+
+    private setCommands(commands: Command[]): void {
+        commands.forEach((command: Command): void => {
+            this.commands.set(command.name, command);
+        });
     }
 }

@@ -10,6 +10,7 @@ export default class PruneCommand implements Command {
 
     public execute(message: DiscordMessage, args: string[]): void {
         const amount: number = parseInt(args[0]) + 1;
+		
 		if (isNaN(amount) || amount < 2 || amount > 6) {
 			message.reply('you need to input a number between 1 and 5.');
 		} else {
