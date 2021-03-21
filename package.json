@@ -1,0 +1,31 @@
+{
+  "name": "discordbot",
+  "version": "0.1.0",
+  "description": "",
+  "main": "Main.js",
+  "scripts": {
+    "build": "tsc --project tsconfig.json && tscpaths -p tsconfig.json -s ./src -o ./dist",
+    "lint": "eslint . --ext .ts",
+    "start": "npm run build && node dist/Main.js",
+    "start:dev": "nodemon"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^12.5.1",
+    "dotenv-flow": "^3.2.0"
+  },
+  "devDependencies": {
+    "@types/dotenv-flow": "^3.1.0",
+    "@types/node": "^14.14.34",
+    "@types/ws": "^7.4.0",
+    "@typescript-eslint/eslint-plugin": "^4.17.0",
+    "@typescript-eslint/parser": "^4.17.0",
+    "eslint": "^7.22.0",
+    "nodemon": "^2.0.7",
+    "ts-node": "^9.1.1",
+    "tsconfig-paths": "^3.9.0",
+    "tscpaths": "0.0.9",
+    "typescript": "^4.2.3"
+  }
+}
